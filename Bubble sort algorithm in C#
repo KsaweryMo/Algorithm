@@ -1,0 +1,65 @@
+using System;
+using System.Linq;
+
+namespace Algorithm
+{
+    class Bubble_sort
+    {
+        int test(string number, string text)
+        {
+            int size;
+
+            while (!Int32.TryParse(number, out size) || number.ElementAt(0) == '-')
+            {
+                Console.Write(text);
+                number = Console.ReadLine();
+            }
+            return size;
+        }
+        void Swap(ref int a, ref int b)
+        {
+            int bufor = a;
+            a = b;
+            b = bufor;
+        }
+        static void Main(string[] args)
+        {
+            string number = "";
+            string[] Text = { "Enter the number of size: ", "Enter the max number of variables: " };
+            Bubble_sort Prog = new Bubble_sort();
+            int size = Prog.test(number, Text[0]);
+            int max = Prog.test(number, Text[1]);
+            int[] Tab = new int[size];
+            Random Rand = new Random();
+            Console.WriteLine("\nBefore Sorting: ");
+            for (int i = 0; i < size; i++)
+            {
+                Tab[i] = Rand.Next(max);
+            }
+            for (int i = 0; i < size; i++)
+            {
+                if (i % 5 == 0)
+                    Console.WriteLine();
+                Console.Write(" {0} ", Tab[i]);
+            }
+            for (int i = 0; i < size - 1; i++)
+            {
+                for (int j = 0; j < size - 1; j++)
+                {
+                    if (Tab[j] > Tab[j + 1])
+                    {
+                        Prog.Swap(ref Tab[j], ref Tab[j + 1]);
+                    }
+                }
+            }
+            Console.WriteLine("\n After Sorting: ");
+            for (int i = 0; i < size; i++)
+            {
+                if (i % 5 == 0)
+                    Console.WriteLine();
+                Console.Write(" {0} ", Tab[i]);
+            }
+            Console.ReadKey();
+        }
+    }
+}
